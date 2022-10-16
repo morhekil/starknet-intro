@@ -33,7 +33,7 @@ function getKeyPair() {
   console.log(`Generated private key: 0x${starkKeyPriv}`);
 
   // add private key to the config
-  config.privateKey = starkKeyPriv;
+  config.privateKey = `0x${starkKeyPriv}`;
   return starkKeyPair;
 }
 
