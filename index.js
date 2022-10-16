@@ -59,7 +59,7 @@ const deployAccount = async () => {
     addressSalt: starkKeyPub,
   });
 
-  console.log("Contract deployed at:", accountResponse.contract_address);
+  console.log("New account address:", accountResponse.contract_address);
   console.log("Transaction hash:", accountResponse.transaction_hash);
 
   // add to config
