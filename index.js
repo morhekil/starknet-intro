@@ -132,10 +132,10 @@ try {
   // await deployAccount();
   // await deployERC20();
   // await mint(
-  //   playerAddress,
+  //   config.playerAddress,
   //   "2500"
   // );
-  await checkBalance(playerAddress);
+  await checkBalance(config.playerAddress);
 } catch (err) {
   console.error(err);
 }
