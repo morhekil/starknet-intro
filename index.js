@@ -37,7 +37,7 @@ function getKeyPair() {
 
 const getERC20 = () => {
   const compiledErc20 = json.parse(
-    fs.readFileSync("./ERC20.json").toString("ascii")
+    fs.readFileSync("./contracts/ERC20.json").toString("ascii")
   );
   const erc20ABI = compiledErc20.abi;
   const erc20 = new Contract(erc20ABI, config.erc20Address, defaultProvider);
@@ -46,7 +46,7 @@ const getERC20 = () => {
 
 const deployAccount = async () => {
   const compiledAccount = json.parse(
-    fs.readFileSync("./Account.json").toString("ascii")
+    fs.readFileSync("./contracts/Account.json").toString("ascii")
   );
 
   const accountResponse = await defaultProvider.deployContract({
@@ -69,7 +69,7 @@ const deployAccount = async () => {
 const deployERC20 = async () => {
   console.log("Deploying ERC20 contract...");
   const compiledErc20 = json.parse(
-    fs.readFileSync("./ERC20.json").toString("ascii")
+    fs.readFileSync("./contracts/ERC20.json").toString("ascii")
   );
   console.log("Deploying ERC20 contract...");
   const name = shortStringToBigInt("ING$"); // name as Cairo short string
