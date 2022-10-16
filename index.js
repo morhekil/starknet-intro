@@ -24,6 +24,7 @@ function getKeyPair() {
   if (config.privateKey) {
     // read private key from a file and return keypair
     const privateKey = config.privateKey;
+    console.log(`Generated private key: ${privateKey}`);
     return EC.getKeyPair(privateKey);
   }
 
