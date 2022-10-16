@@ -1,3 +1,5 @@
+import { uint256 } from "starknet";
+
 const SHORT_STRING_MAX_CHARACTERS = 31;
 
 export function shortStringToBigInt(convertableString) {
