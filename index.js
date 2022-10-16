@@ -24,13 +24,14 @@ function getKeyPair() {
   if (config.privateKey) {
     // read private key from a file and return keypair
     const privateKey = config.privateKey;
-    console.log(`Generated private key: ${privateKey}`);
     return EC.getKeyPair(privateKey);
   }
 
   // generate new keypair and save its private key to a file
   const starkKeyPair = EC.genKeyPair();
   const starkKeyPriv = starkKeyPair.getPrivate("hex");
+  console.log(`Generated private key: 0x${starkKeyPriv}`);
+
   // add private key to the config
   config.privateKey = starkKeyPriv;
   return starkKeyPair;
