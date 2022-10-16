@@ -45,6 +45,8 @@ const getERC20 = () => {
 };
 
 const deployAccount = async () => {
+  console.log("Deploying Account contract...");
+
   const compiledAccount = json.parse(
     fs.readFileSync("./contracts/Account.json").toString("ascii")
   );
@@ -68,6 +70,7 @@ const deployAccount = async () => {
 
 const deployERC20 = async () => {
   console.log("Deploying ERC20 contract...");
+
   const compiledErc20 = json.parse(
     fs.readFileSync("./contracts/ERC20.json").toString("ascii")
   );
@@ -97,6 +100,8 @@ const deployERC20 = async () => {
 };
 
 const mint = async (address, amount) => {
+  console.log(`Minting ${amount} tokens to ${address}...`);
+
   const erc20 = getERC20();
 
   const account = new Account(
@@ -118,7 +123,7 @@ const mint = async (address, amount) => {
 
 const checkBalance = async (address) => {
   const erc20 = getERC20();
-  console.log(`Calling StarkNet for account balance...`);
+  console.log(`Calling StarkNet for balance of ${address}...`);
   const response = await erc20.balanceOf(address);
 
   console.log("response is", response);
