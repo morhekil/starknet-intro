@@ -123,6 +123,27 @@ const mint = async (address, amount) => {
   console.log("done");
 };
 
+const transfer = async(receiver, amount) => {
+  console.log(`Transfering ${amount} tokens to ${receiver}...`);
+  const erc20 = getERC20();
+
+  const account = new Account(
+    defaultProvider,
+    config.accountAddress,
+    getKeyPair()
+  );
+  console.log("account", account);
+  erc20.connect(account);
+  const cairoAmount = uint256.bnToUint256(amount);
+  const response = await erc20.transfer(receiver, cairoAmount);
+
+  console.log("Transfer response", response);
+  console.log("Waiting for Tx to be Accepted on Starknet - Transfering...");
+  await defaultProvider.waitForTransaction(response.transaction_hash);
+  console.log("done");
+
+}
+
 const checkBalance = async (address) => {
   const erc20 = getERC20();
   console.log(`Calling StarkNet for balance of ${address}...`);
@@ -142,7 +163,15 @@ try {
   //   config.playerAddress,
   //   "2500"
   // );
+  // await mint(
+  //   config.accountAddress,
+  //   "2500"
+  // );
   await checkBalance(config.playerAddress);
+  await checkBalance(config.accountAddress);
+  await transfer(config.playerAddress, "300")
+  await checkBalance(config.playerAddress);
+  await checkBalance(config.accountAddress);
 } catch (err) {
   console.error(err);
 }
